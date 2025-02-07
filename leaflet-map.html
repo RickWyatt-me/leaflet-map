@@ -13,49 +13,69 @@
 </head>
 <body>
 <p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html&gt;</p>
+<p class="p1">&lt;html lang="en"&gt;</p>
 <p class="p1">&lt;head&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;DTE Construction Projects Map&lt;/title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;Leaflet Map - DTE Projects&lt;/title&gt;</p>
 <p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="utf-8"&gt;</p>
 <p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
 <p class="p2"><span class="Apple-converted-space">    </span></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Leaflet.js Library --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- ✅ Corrected Leaflet.js Links (Using CDN for Compatibility) --&gt;</p>
 <p class="p1"><span class="Apple-converted-space">    </span>&lt;link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" /&gt;</p>
 <p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"&gt;&lt;/script&gt;</p>
 <p class="p2"><span class="Apple-converted-space">    </span></p>
 <p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>/* Set the map to take the full screen */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* ✅ Ensure the map container takes full page width */</p>
 <p class="p1"><span class="Apple-converted-space">        </span>html, body { margin: 0; padding: 0; height: 100%; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>#map { width: 100%; height: 100vh; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>#map { width: 100%; height: 500px; }</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* ✅ Add simple debugging styles for visibility */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.error-message {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: none;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: red;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-weight: bold;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-top: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
 <p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
 <p class="p1">&lt;/head&gt;</p>
-<p class="p2"><br></p>
 <p class="p1">&lt;body&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Map Container --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- ✅ Map Container --&gt;</p>
 <p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="map"&gt;&lt;/div&gt;</p>
 <p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- ✅ Error Handling --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="error-message" class="error-message"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>Error: Unable to load the map. Check console for details.</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
 <p class="p1"><span class="Apple-converted-space">    </span>&lt;script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>// Initialize the map, centered on Michigan (default view)</p>
-<p class="p1"><span class="Apple-converted-space">        </span>var map = L.map('map').setView([42.3314, -83.0458], 10);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>// ✅ Wrap the map initialization in a try-catch block to catch errors</p>
+<p class="p1"><span class="Apple-converted-space">        </span>try {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>// ✅ Initialize the map (default view: Detroit)</p>
+<p class="p1"><span class="Apple-converted-space">            </span>var map = L.map('map').setView([42.3314, -83.0458], 10);</p>
 <p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>// Add OpenStreetMap tiles</p>
-<p class="p1"><span class="Apple-converted-space">        </span>L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>attribution: '© OpenStreetMap contributors'</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}).addTo(map);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>// ✅ Add OpenStreetMap tile layer</p>
+<p class="p1"><span class="Apple-converted-space">            </span>L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>attribution: '© OpenStreetMap contributors'</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}).addTo(map);</p>
 <p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>// Example locations (Replace with real data from PowerApps)</p>
-<p class="p1"><span class="Apple-converted-space">        </span>var locations = [</p>
-<p class="p1"><span class="Apple-converted-space">            </span>{ name: "Project A", lat: 42.3314, lon: -83.0458 },</p>
-<p class="p1"><span class="Apple-converted-space">            </span>{ name: "Project B", lat: 42.3500, lon: -83.1000 },</p>
-<p class="p1"><span class="Apple-converted-space">            </span>{ name: "Specialist John Doe", lat: 42.3624, lon: -83.0200 }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>];</p>
+<p class="p1"><span class="Apple-converted-space">            </span>// ✅ Example project locations (Replace these with real data from PowerApps later)</p>
+<p class="p1"><span class="Apple-converted-space">            </span>var locations = [</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{ name: "Project A", lat: 42.3314, lon: -83.0458 },</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{ name: "Project B", lat: 42.3500, lon: -83.1000 },</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{ name: "Specialist John Doe", lat: 42.3624, lon: -83.0200 }</p>
+<p class="p1"><span class="Apple-converted-space">            </span>];</p>
 <p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>// Add markers to the map</p>
-<p class="p1"><span class="Apple-converted-space">        </span>locations.forEach(loc =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>L.marker([loc.lat, loc.lon]).addTo(map)</p>
-<p class="p1"><span class="Apple-converted-space">                </span>.bindPopup("&lt;b&gt;" + loc.name + "&lt;/b&gt;").openPopup();</p>
-<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p1"><span class="Apple-converted-space">            </span>// ✅ Add markers for each location</p>
+<p class="p1"><span class="Apple-converted-space">            </span>locations.forEach(loc =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>L.marker([loc.lat, loc.lon]).addTo(map)</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>.bindPopup("&lt;b&gt;" + loc.name + "&lt;/b&gt;").openPopup();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
 <p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>console.log("✅ Leaflet Map Loaded Successfully");</p>
+<p class="p1"><span class="Apple-converted-space">        </span>} catch (error) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>console.error("❌ Error loading Leaflet map:", error);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById("error-message").style.display = "block";</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
 <p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
 <p class="p1">&lt;/body&gt;</p>
 <p class="p1">&lt;/html&gt;</p>
